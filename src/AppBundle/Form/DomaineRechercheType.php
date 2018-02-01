@@ -21,7 +21,7 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 {
 
   $builder
-  ->add('nomDomaine', EntityType::class, array(
+    ->add('nomDomaine', EntityType::class, array(
     'class'         => 'AppBundle:Domaine',
     'choice_label'  => 'nomDomaine',
     'multiple'      => false,
