@@ -1,0 +1,96 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Structure
+ *
+ * @ORM\Table(name="structure")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StructureRepository")
+ */
+class Structure
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_structure", type="string", length=255)
+     */
+    private $nomStructure;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return Structure
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * Set nomStructure
+     *
+     * @param string $nomStructure
+     *
+     * @return Structure
+     */
+    public function setNomStructure($nomStructure)
+    {
+        $this->nomStructure = $nomStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get nomStructure
+     *
+     * @return string
+     */
+    public function getNomStructure()
+    {
+        return $this->nomStructure;
+    }
+}
