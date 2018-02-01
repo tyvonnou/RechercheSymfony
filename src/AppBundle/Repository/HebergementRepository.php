@@ -11,8 +11,8 @@ use Doctrine\ORM\QueryBuilder;
  */
 class HebergementRepository extends \Doctrine\ORM\EntityRepository
 {
-  public function getAll()
-  {
+  public function getAll(){ // Requête pour la recherche
+
     $em = $this->getEntityManager();
     $qb = $em->createQueryBuilder();
 
@@ -27,7 +27,7 @@ return $results;
 
   }
 
-  public function findone($URL) {
+  public function findone($URL) { //Requête pour la recherche par URL
 
     $em = $this->getEntityManager();
     $qb = $em->createQueryBuilder();

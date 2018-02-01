@@ -11,8 +11,9 @@ use Doctrine\ORM\QueryBuilder;
  */
 class DomaineRepository extends \Doctrine\ORM\EntityRepository
 {
-  public function getAll()
-  {
+
+  public function getAll(){ //Requête pour la recherche
+
     $em = $this->getEntityManager();
     $qb = $em->createQueryBuilder();
 
@@ -27,7 +28,7 @@ class DomaineRepository extends \Doctrine\ORM\EntityRepository
 
   }
 
-  public function findone($nomDomaine) {
+  public function findone($nomDomaine) {   //requête pour la recherche à partir d'un nom de domaine
 
     $em = $this->getEntityManager();
     $qb = $em->createQueryBuilder();

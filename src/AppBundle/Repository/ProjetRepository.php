@@ -11,8 +11,8 @@ use Doctrine\ORM\QueryBuilder;
  */
 class ProjetRepository extends \Doctrine\ORM\EntityRepository
 {
-  public function getAll()
-  {
+
+  public function getAll(){ //Requête pour les RechercheSousDomaine
     $em = $this->getEntityManager();
     $qb = $em->createQueryBuilder();
 
@@ -28,49 +28,23 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
 
   }
 
-  public function findAnnonceByParametres()
 
-{
 
-$query = $this->createQueryBuilder('p');
+  public function findone($nomProjet) { // Recherche par nom de projet
 
-$query->where('a.nomProjet = :nomProjet')
+    $em = $this->getEntityManager();
+    $qb = $em->createQueryBuilder();
 
-->setParameters(array(
+     $qb->select(array('p', 't'))
+     ->from('AppBundle\Entity\Projet', 'p')
+     ->leftjoin('p.typeProjet', 't')
+     ->where('p.id = :id')
+     ->setParameter('id', $nomProjet);
 
-'NomProjet' => $data['nomProjet']));
+    $query = $qb->getQuery();
+    $results = $query->getResult();
 
-// Si la recherche porte sur toutes les marques
-
-if($data['nomProjet'] != '')
-
-{
-
-$query->andWhere('a.nomProjet = :nomProjet')
-
-->setParameter('nomProjet', $data['nomProjet']);
-
-}
-return $query->getQuery()->getResult();
-
-}
-
-public function findone($nomProjet) {
-
-  $em = $this->getEntityManager();
-  $qb = $em->createQueryBuilder();
-
-   $qb->select(array('p', 't'))
-   ->from('AppBundle\Entity\Projet', 'p')
-   ->leftjoin('p.typeProjet', 't')
-   ->where('p.id = :id')
-   ->setParameter('id', $nomProjet);
-
-  $query = $qb->getQuery();
-  $results = $query->getResult();
-  
-  return $results;
-
+    return $results;
 
 }
 }
