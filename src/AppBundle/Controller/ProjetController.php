@@ -18,6 +18,8 @@ use AppBundle\Form\ProjetRechercheType;
 use AppBundle\Form\HebergementRechercheType;
 use AppBundle\Form\DomaineRechercheType;
 use AppBundle\Form\SousDomaineRechercheType;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 
 class ProjetController extends Controller
@@ -27,13 +29,24 @@ class ProjetController extends Controller
   *@Route("/projet", name="projet")
   */
   public function projetAction(Request $request){
+
+
     $Projet = $this->getDoctrine()
     ->getRepository('AppBundle:Projet')   // appel du repository
     ->getAll();                           // Utilisation de la méthode getAll pour récupérer toutes les données du projet
 
+
+  #  foreach ($Projet->getSousDomaines() as $sousdomaine) {     Essai relation inverse
+  #    var_dump($sousdomaine->getNomSousDomaine());
+  #  }
+
+
+
     return $this->render("Projet.html.twig", array(     //Puis le résultat est envoyé au template pour l'affichage
       'Projet' => $Projet,
     ));
+
+
   }
 
   /**

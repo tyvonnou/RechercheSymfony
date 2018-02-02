@@ -28,10 +28,11 @@ class SousDomaine
      private $domaine;
 
      /**
-      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet")
+      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet",
+      *      inversedBy="sousdomaines")
       * @ORM\JoinColumn(nullable=false)
       */
-      private $projet;
+      protected $projet;
 
       /**
        * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Hebergement")
